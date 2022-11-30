@@ -1,0 +1,14 @@
+{
+  "name": "prism-neos",
+  "version": "0.0.1",
+  "description": "Neos Fusion & AFX language support",
+  "main": "index.js",
+  "repository": "git@github.com:manuelmeister/prism-neos.git",
+  "author": "Manuel Meister <manuel.meister@jvm.ch>",
+  "devDependencies": {
+    "@types/prismjs": "^1.26.0"
+  },
+  "peerDependencies": {
+    "prismjs": "^1.29.0"
+  }
+}
