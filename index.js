@@ -1,3 +1,12 @@
+/**
+ * Prism Neos Plugin
+ *
+ * @license MIT <https://opensource.org/licenses/MIT>
+ * Original work on php implementation by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
+ * Modified by Miles Johnson: http://milesj.me
+ * Rewritten by Tom Pavelec
+ * Repurposed by Manuel Meister for Neos Fusion & AFX : https://meister.io
+ */
 (function (Prism) {
 
     Prism.languages.eel = Prism.util.clone(Prism.languages.javascript)
@@ -197,14 +206,6 @@
         walkTokens(env.tokens);
     });
 
-    /**
-     * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
-     * Modified by Miles Johnson: http://milesj.me
-     * Rewritten by Tom Pavelec
-     * Modified by Manuel Meister: https://meister.io
-     *
-     * Supports Neos Fusion
-     */
     Prism.languages.neosfusion = {
         'eel': {
             alias: 'punctuation',
