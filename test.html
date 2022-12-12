@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://unpkg.com/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="./index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<pre>
+<code class="language-neosfusion">
+# Include all .fusion files in NodeTypes
+include: NodeTypes/*
+
+# Include all .fusion files in NodeTypes and it's subfolders recursively
+include: NodeTypes/**/*
+
+foo = Neos.Neos:Page
+# or:
+my.object = Neos.Fusion:Value
+# or:
+my.image = Neos.Neos.ContentTypes:Image
+
+prototype(Vendor.Name:Foo).bar = 'baz'
+prototype(Vendor.Name:Foo).some.thing = 'baz2'
+
+some.path.prototype(Vendor.Name:Foo).some = 'baz2'
+
+prototype(Vendor.Name:Foo).prototype(Vendor.Name:Bar).some = 'baz2'
+prototype(Vendor.Name:Foo).left.prototype(Vendor.Name:Bar).some = 'baz2'
+
+myObject = Vendor.Name:MyObject {
+    property = 'some value'
+    property.@process.1 = ${'before ' + value + ' after'}
+}
+# results in 'before some value after'
+
+myObject = Neos.Neos:Menu {
+@if.1 = ${q(node).property('showMenu') == true}
+}
+# results in the menu object only being evaluated if the node's showMenu property is not ``false``
+# the php rules for mapping values to boolean are used internally so following values are
+# considered beeing false: ``null, false, '', 0, []``
+
+test = Vendor.Site:Prototype {
+    @apply.contextValue {
+        @position = 'start'
+        expression = ${ arrayValueFromContext }
+    }
+    @apply.fusionObject {
+        @position = 'end'
+        expression = Neos.Fusion:RawArray {
+            value = "altered value"
+        }
+    }
+}
+
+afx`
+&lt;Neos.Fusion:Collection collection={['one','two','three']} @children="itemRender">
+  &lt;p>{item}&lt;/p>
+&lt;/Neos.Fusion:Collection>
+`
+
+// Line comment
+
+# Another line comment
+
+/*
+* Multiline comment
+*/
+</code>
+</pre>
+</body>
+</html>

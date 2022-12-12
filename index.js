@@ -203,7 +203,7 @@
      * Rewritten by Tom Pavelec
      * Modified by Manuel Meister: https://meister.io
      *
-     * Supports PHP 5.3 - 8.0
+     * Supports Neos Fusion
      */
     Prism.languages.neosfusion = {
         'eel': {
@@ -275,11 +275,11 @@
         ],
         'comment': [
             {
-                pattern: /(?:\/\/.*)|(?:#(?!\[).*)$/m,
+                pattern: /(?:\/\/|#).*$/m,
                 greedy: true
             },
             {
-                pattern: /\/\*[\s\S]*?(?:\*\/|$)/m,
+                pattern: /^(?!.*include:).*\/\*[\s\S]*?\*\//gm,
                 greedy: true
             }
         ],
@@ -291,12 +291,14 @@
             }
         },
         'include-statement': {
-            pattern: /^include:.*$/m,
+            pattern: /^\s*(include:.*)$/m,
             alias: 'url',
-            lookbehind: true,
             greedy: true,
             inside: {
-                'punctuation': /(?<=include):/,
+                'punctuation': {
+                    pattern: /(include):/,
+                    lookbehind: true,
+                },
                 'keyword': {
                     pattern: /include/i,
                 }
@@ -317,7 +319,7 @@
                 greedy: true,
                 inside: {
                     'namespace': /\b[-.:@"'\w]+(?=:[-.:@"'\w]+)/,
-                    'punctuation': /(?<!\\):/
+                    'punctuation': /:/
                 }
             },
         ],
